@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="chassis">
+        <link name="chassis_link">
+            <visual>
+                <origin xyz="0 0 ${body_height/2}" rpy="0 0 0"/>
+
+                <geometry>
+                    <box size="${body_length} ${body_width} ${body_height}" />
+                </geometry>
+            
+                <material name="blue">
+                    <color rgba="0.2 0.3 0.8 1" />
+                </material>                        
+            </visual>
+        </link>
+
+        <joint name="base_to_chassis" type="fixed">
+            <parent link="base_link"/>
+            <child link="chassis_link"/>
+            <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+        
+        
+        </joint>
+
+
+    </xacro:macro>
+
+</robot>
