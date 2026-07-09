@@ -16,6 +16,17 @@
                     <color rgba="0.1 0.1 0.1 1" />
                 </material>
             </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_width}" />
+                </geometry>
+                    
+            </collision>
+
+            <xacro:cylinder_inertia mass="${wheel_mass}" radius="${wheel_radius}" length="${wheel_width}"/>
         </link>
 
         <joint name="${prefix}_wheel_joint" type="continuous">
@@ -24,6 +35,7 @@
             <origin xyz="${wheel_x} ${y_pos} 0" rpy="-${pi/2} 0 0"/>
             <axis xyz="0 0 -1"/> 
         </joint>
+
 
     </xacro:macro>
 

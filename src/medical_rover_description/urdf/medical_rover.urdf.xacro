@@ -6,6 +6,7 @@
     <xacro:include filename="wheels.xacro" />
     <xacro:include filename="chassis.xacro" />
     <xacro:include filename="sensors.xacro" />
+    <xacro:include filename="inertial_values.xacro" />
 
     <link name="base_link"/>
     
@@ -18,24 +19,7 @@
 
     <xacro:camera/>
 
-    <link name="caster_wheel_link">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <sphere radius="${sphere_radius}" />
-            </geometry>    
-            <material name="grey">
-                <color rgba="0.7 0.7 0.7 1" />
-            </material>       
-        </visual>
-    
-    </link>
-
-    <joint name="caster_wheel_joint" type="fixed">
-        <parent link="chassis_link"/>
-        <child link="caster_wheel_link"/>
-        <origin xyz="${(body_length/2)-sphere_radius} 0 -${sphere_radius}" rpy="0 0 0"/>
-    </joint>
+    <xacro:caster/>
 
 
 </robot>

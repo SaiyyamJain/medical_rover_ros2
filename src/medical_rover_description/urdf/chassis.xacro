@@ -15,17 +15,58 @@
                     <color rgba="0.2 0.3 0.8 1" />
                 </material>                        
             </visual>
+
+            <collision>
+                <origin xyz="0 0 ${body_height/2}" rpy="0 0 0"/>
+
+                <geometry>
+                    <box size="${body_length} ${body_width} ${body_height}" />
+                </geometry>                      
+            </collision>
+
+            <xacro:box_inertia mass="${body_mass}" x="${body_length}" y="${body_width}" z="${body_height}"/>
         </link>
 
         <joint name="base_to_chassis" type="fixed">
             <parent link="base_link"/>
             <child link="chassis_link"/>
             <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
-        
-        
         </joint>
 
 
+
+    </xacro:macro>
+
+    <xacro:macro name="caster">
+        <link name="caster_wheel_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <sphere radius="${sphere_radius}" />
+                </geometry>    
+                <material name="grey">
+                    <color rgba="0.7 0.7 0.7 1" />
+                </material>       
+            </visual>
+        
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="${sphere_radius}" />
+            </geometry>         
+        </collision>
+
+        <xacro:sphere_inertia mass="${caster_mass}" radius="${sphere_radius}"/>
+
+        </link>
+
+        <joint name="caster_wheel_joint" type="fixed">
+            <parent link="chassis_link"/>
+            <child link="caster_wheel_link"/>
+            <origin xyz="${(body_length/2)-sphere_radius} 0 -${sphere_radius}" rpy="0 0 0"/>
+        </joint>
+
+>
     </xacro:macro>
 
 </robot>
