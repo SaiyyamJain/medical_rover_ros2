@@ -7,6 +7,7 @@
     <xacro:include filename="chassis.xacro" />
     <xacro:include filename="sensors.xacro" />
     <xacro:include filename="inertial_values.xacro" />
+    <xacro:include filename="gazebo.xacro"/>
 
     <link name="base_link"/>
     
@@ -21,5 +22,6 @@
 
     <xacro:caster/>
 
+    
 
 </robot>
