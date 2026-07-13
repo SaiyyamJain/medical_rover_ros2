@@ -2,4 +2,13 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <gazebo>
+        <plugin name="gazebo_ros2_control"
+                filename="libgazebo_ros2_control.so">
+
+            <parameters>/home/saiyyam/medical_rover_ws/src/medical_rover_gazebo/config/controllers.yaml</parameters>
+
+        </plugin>
+    </gazebo>
+
 </robot>

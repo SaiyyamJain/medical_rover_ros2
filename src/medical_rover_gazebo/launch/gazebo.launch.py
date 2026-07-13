@@ -53,14 +53,49 @@ def generate_launch_description():
     output="screen"
     )
 
+    joint_state_broadcaster = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "joint_state_broadcaster",
+            "--controller-manager",
+            "/controller_manager",
+        ],
+        output="screen",
+    )
+
+    diff_drive_controller = Node(
+    package="controller_manager",
+    executable="spawner",
+    arguments=[
+        "diff_cont",
+        "--controller-manager",
+        "/controller_manager",
+    ],
+    output="screen",
+    )
+
     delayed_spawn = TimerAction(
     period=5.0,
     actions=[spawn_entity]
     )
 
+    delayed_joint_state_broadcaster = TimerAction(
+        period=8.0,
+        actions=[joint_state_broadcaster]
+    )
+
+    delayed_diff_drive_controller  = TimerAction(
+        period=10.0,
+        actions=[diff_drive_controller]
+
+    )
 
     return LaunchDescription([
         gazebo,
         robot_state_publisher,
-        delayed_spawn
+        delayed_spawn,
+        delayed_joint_state_broadcaster,
+        delayed_diff_drive_controller,
+
 ])
